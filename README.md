@@ -1,4 +1,4 @@
-# Random scripts
+# scripts
 
 Random personal scripts that I keep in my ~/bin directory. 
 
