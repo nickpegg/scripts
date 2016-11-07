@@ -1,0 +1,22 @@
+#!/bin/bash
+
+src="/home/nick/code/scripts"
+dest="/home/nick/bin"
+
+cd $src
+git pull origin master
+
+for file in $src/*; do
+  test -x $file || continue
+
+  filename=${file##*/}
+
+  if [ ! -e "${dest}/${filename}" ]; then
+    ln -s "${file}" "${dest}/${filename}"
+    echo -e -n "[ \e[33mlinked\e[0m ] "
+  else
+    echo -e -n "[ \e[32mexists\e[0m ] "
+  fi
+
+  echo "$filename"
+done
