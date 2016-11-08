@@ -37,3 +37,5 @@ case "$1" in
 		pacmd set-default-sink $external_sound
 		;;
 esac
+
+i3-msg restart
