@@ -17,4 +17,4 @@ Dumps photos from an SD card into ~/Pictures/dump and sorts them into directorie
 It assumes that you have a `/mnt/sd` already configured in `/etc/fstab` that's mountable by your user.
 
 ## sync_scripts
-Inspired by @akerl's `script_sync`, links scripts from this repo into ~/bin.
+Inspired by [@akerl](https://github.com/akerl)'s `script_sync`, links scripts from this repo into ~/bin.
