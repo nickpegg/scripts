@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Various tasks to dock my laptop to its dock
-# 
+#
 # Run `dock` to dock the laptop, `dock undock` prior to undocking.
 # The eventual goal is to have this script get called automatically when the
 # Thunderbolt 3 dock is plugged in and removed.
@@ -11,29 +11,19 @@ zmodload zsh/mathfunc
 screen="eDP1"
 mon="DP1-2"
 
+screen_resolution="1600x900"
+
 internal_sound="alsa_output.pci-0000_00_1f.3.analog-stereo"
 external_sound="alsa_output.usb-Generic_USB_Audio_200901010001-00.analog-stereo"
 
-# Screen size calculations
-screen_width=3200
-
-mon_width=1920
-mon_height=1200
-scale=2
-
-scaled_width=$((int($scale * $mon_width)))
-scaled_height=$((int($scale * $mon_height)))
-panning="${scaled_width}x${scaled_height}+${screen_width}+0"
-
-# doit
 case "$1" in
 	undock)
-		xrandr --output $screen --auto --output $mon --off
+		xrandr --output $screen --auto --primary --mode $screen_resolution --output $mon --off
 		pacmd set-default-sink $internal_sound
 		;;
 	*)
-		xrandr --output $screen --auto --pos "${scaled_width}x0" \
-			--output $mon --auto --primary --scale "${scale}x${scale}" --pos "0x0" 
+		xrandr --output $screen --auto --mode $screen_resolution 	--right-of $mon \
+			--output $mon --auto --primary --pos "0x0"
 		pacmd set-default-sink $external_sound
 		;;
 esac
