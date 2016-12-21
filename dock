@@ -11,6 +11,9 @@ zmodload zsh/mathfunc
 # Defaults
 SCREEN=eDP1
 MONITOR=DP1
+
+# Position of $SCREEN in relation to $MONITOR. This should be in xrandr terms,
+# e.g. --left-of or --right-of
 SCREEN_POS='--right-of'
 
 SCREEN_RES=1920x1080
