@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# lock and then suspend. `systemctl suspend` doesn't lock first, which causes
+# a weird thing where upon resume, the unlocked screen will flash before the
+# screen saver kicks in
+
+xscreensaver-command -lock && systemctl suspend
