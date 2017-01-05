@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Various tasks to dock my laptop to its dock
 #
@@ -6,7 +6,8 @@
 # The eventual goal is to have this script get called automatically when the
 # Thunderbolt 3 dock is plugged in and removed.
 
-zmodload zsh/mathfunc
+# TODO: Actually discover audio devices instead of hard-coding
+# TODO: trigger this script via udev
 
 # Defaults
 SCREEN=eDP1
