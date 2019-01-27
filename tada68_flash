@@ -49,7 +49,7 @@ flash_keyboard() {
 }
 
 
-if [ "$BINFILEx" = "x" ]; then
+if [ -z "$BINFILE" ]; then
   usage
   exit 1
 fi
