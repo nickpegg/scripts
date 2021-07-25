@@ -9,8 +9,7 @@
 zmodload zsh/mathfunc
 
 screen="eDP1"
-mon="DP1-1"
-mon2="DP1-2"
+mon="DP1-2"
 
 screen_resolution="1920x1080"
 
@@ -21,13 +20,11 @@ case "$1" in
 	undock)
 		xrandr --output $screen --auto --primary --mode $screen_resolution
 		xrandr --output $mon --off
-		xrandr --output $mon2 --off
 		pacmd set-default-sink $internal_sound
 		;;
 	*)
-		xrandr --output $screen --auto --mode $screen_resolution --primary --pos "0x0"
-		xrandr --output $mon --auto --right-of $screen
-		xrandr --output $mon2 --auto --right-of $mon
+		xrandr --output $screen --auto --mode $screen_resolution
+		xrandr --output $mon --primary --auto --right-of $screen
 		pacmd set-default-sink $external_sound
 		;;
 esac
