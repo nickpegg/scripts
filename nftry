@@ -1,0 +1,25 @@
+#!/usr/bin/bash
+
+# Timeout before rolling back, in seconds
+TIMEOUT=10
+
+if test -z "$1"; then
+  echo "Usage: nftry <nftables.conf>"
+  exit 1
+fi
+
+set -e -u
+
+if sudo nft -c -f "$1"; then
+  sudo nft list ruleset > /tmp/nftables.conf
+  sudo nft -f "$1"
+
+  if read -t "$TIMEOUT" -p "Press enter to accept new rules. Will roll back in $TIMEOUT seconds " x; then
+    echo "New rules applied"
+    rm /tmp/nftables.conf
+  else
+    echo
+    echo "Rolling back"
+    sudo nft -f /tmp/nftables.conf
+  fi
+fi
